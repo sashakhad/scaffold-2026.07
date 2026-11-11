@@ -24,7 +24,7 @@ Set up this project by installing dependencies and configuring the environment.
    cp .env.example .env
    ```
 
-4. **Database is optional for the demo UI.** Ask whether the user wants a database now:
+4. **Database is optional.** Project Compass does not use it. Ask whether the user wants a database now:
    - **Skip for now (default)** — they can run `/start` immediately. Prisma is ready when they add a real `DATABASE_URL` later.
    - **Local Postgres with Docker** — if Docker is available:
      ```bash

@@ -1,44 +1,71 @@
-import { ExampleForm } from '@/components/ExampleForm';
+import { ProjectList } from '@/components/ProjectList';
+import { namedProjects, projects, projectsInLane } from '@/lib/projects';
 
-export default function Home() {
+const cutoff = 'Before Wednesday, Nov 11, 2026, 3:15 PM';
+
+export default function HomePage() {
+  const named = namedProjects();
+  const active = projectsInLane('active');
+  const someday = projectsInLane('someday');
+
   return (
-    <main className='min-h-screen p-8'>
-      <div className='mx-auto max-w-4xl space-y-12'>
-        <header className='space-y-4 text-center'>
-          <h1 className='text-4xl font-bold'>Modern Full-Stack Scaffold</h1>
-          <p className='text-muted-foreground text-xl'>
-            Next.js App Router, React, TypeScript, Prisma, Tailwind CSS, and shadcn/ui.
+    <main className='mx-auto w-full max-w-3xl px-5 pb-20'>
+      <p className='text-tide text-sm'>{cutoff}</p>
+      <h1 className='mt-2 font-serif text-4xl leading-tight tracking-tight sm:text-5xl'>
+        What is actually in motion
+      </h1>
+      <p className='text-foreground/80 mt-4 max-w-2xl text-base leading-7'>
+        Twenty-one projects from his project list. He named two: the album (High Tide — Bula!) and
+        PIGU/GaoChao. Every other rank is a draft. A field the list does not state says Sasha to
+        fill.
+      </p>
+
+      <section className='border-tide/30 bg-tide text-paper mt-8 rounded-2xl border px-5 py-4'>
+        <h2 className='font-serif text-2xl'>Guardrail</h2>
+        <p className='mt-2 leading-7'>
+          Keep the SpaceX job unless a project hits a compelling financial threshold. Virality,
+          attention, or an ego hit is not that threshold. Agreed Nov 10.
+        </p>
+      </section>
+
+      <section className='mt-6 grid gap-4 md:grid-cols-2'>
+        <article className='border-line bg-paper rounded-2xl border p-5'>
+          <h2 className='font-serif text-2xl'>Financial</h2>
+          <p className='text-foreground/80 mt-2 text-sm leading-6'>
+            There is a money goal. It is not printed here. Qualitatively: enough room that a real
+            experiment is not a stress, and cash matters more to him right now than fame.
           </p>
-        </header>
+        </article>
+        <article className='border-line bg-paper rounded-2xl border p-5'>
+          <h2 className='font-serif text-2xl'>Play</h2>
+          <p className='text-foreground/80 mt-2 text-sm leading-6'>
+            Quality of life, as framed for this page: freedom to keep playing in these projects,
+            with some time, without killing the joy by over-managing them.
+          </p>
+        </article>
+      </section>
 
-        <section className='grid gap-8 md:grid-cols-2'>
-          <div className='space-y-4'>
-            <h2 className='text-2xl font-semibold'>Built with Modern Tech</h2>
-            <ul className='text-muted-foreground list-disc space-y-2 pl-5'>
-              <li>Next.js with App Router and Turbopack</li>
-              <li>React with strict TypeScript support</li>
-              <li>Prisma with PostgreSQL adapter</li>
-              <li>Tailwind CSS with Radix-powered UI primitives</li>
-              <li>React Hook Form with Zod validation</li>
-            </ul>
-          </div>
+      <section className='mt-10'>
+        <h2 className='font-serif text-3xl'>The two he named</h2>
+        <p className='text-foreground/75 mt-2 text-sm leading-6'>
+          The album first, then PIGU/GaoChao. PIGU and GaoChao share rank 2.
+        </p>
+        <ProjectList projects={named} />
+      </section>
 
-          <div className='space-y-4'>
-            <h2 className='text-2xl font-semibold'>Development Tooling</h2>
-            <ul className='text-muted-foreground list-disc space-y-2 pl-5'>
-              <li>ESLint and Prettier for code quality</li>
-              <li>Vitest and Testing Library for unit tests</li>
-              <li>Cypress for end-to-end smoke tests</li>
-              <li>Storybook with Vitest browser tests</li>
-              <li>Prisma Studio for database management</li>
-            </ul>
-          </div>
-        </section>
+      <section className='mt-10'>
+        <h2 className='font-serif text-3xl'>Active</h2>
+        <ProjectList projects={active} />
+      </section>
 
-        <section className='flex justify-center'>
-          <ExampleForm />
-        </section>
-      </div>
+      <section className='mt-10'>
+        <h2 className='font-serif text-3xl'>Someday</h2>
+        <ProjectList projects={someday} />
+      </section>
+
+      <p className='text-foreground/60 mt-3 text-sm'>
+        {projects.length} projects on this page. Family, health, and money-admin are not here.
+      </p>
     </main>
   );
 }

@@ -1,23 +1,30 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Newsreader } from 'next/font/google';
+
+import { SiteHeader } from '@/components/SiteHeader';
+
 import './globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const newsreader = Newsreader({
+  variable: '--font-newsreader',
+  subsets: ['latin', 'latin-ext'],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Project Scaffold',
-    template: '%s · Project Scaffold',
+    default: 'Project Compass',
+    template: '%s · Project Compass',
   },
-  description: 'A modern Next.js App Router scaffold with Prisma, Tailwind CSS, and shadcn/ui.',
+  description: 'A shared, short view of Sasha’s active projects for Melissa.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
@@ -26,8 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className='font-sans antialiased'>{children}</body>
+    <html lang='en' className={`${geistSans.variable} ${newsreader.variable} h-full antialiased`}>
+      <body className='min-h-full overflow-x-hidden font-sans break-words'>
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }
