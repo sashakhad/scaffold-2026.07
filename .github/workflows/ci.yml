@@ -60,9 +60,4 @@ jobs:
       - name: Install Cypress binary
         run: pnpm exec cypress install
       - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          install: false
-          start: pnpm start
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
+        run: pnpm exec start-server-and-test 'pnpm start' http://127.0.0.1:3000 'pnpm exec cypress run'
