@@ -1,5 +1,5 @@
 {
-  "name": "scaffold-2026.07",
+  "name": "project-compass",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -23,7 +23,6 @@
     "test:e2e": "pnpm build && pnpm exec cypress install && start-server-and-test start http://localhost:3000 'cypress run'",
     "test:e2e:open": "pnpm build && pnpm exec cypress install && start-server-and-test start http://localhost:3000 'cypress open'",
     "test:e2e:run": "cypress run",
-    "bump:scaffold": "bash ./scripts/bump-scaffold.sh",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
