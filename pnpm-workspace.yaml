@@ -1,4 +1,9 @@
 # pnpm 11 project settings (single-package scaffold).
+# pnpm 11 treats a missing packages list as the root package only. pnpm 9,
+# which Vercel still selects for some projects, rejects that file outright.
+packages:
+  - '.'
+
 # Build scripts are denied by default; allow only packages we need.
 allowBuilds:
   '@prisma/engines': true
